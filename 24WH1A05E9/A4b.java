@@ -1,0 +1,55 @@
+package e9;
+
+
+
+public class A4b {
+
+
+
+	public static void main(String[] args) {
+
+		//print the following pattern
+
+				//         *
+
+				//       * *
+
+				//     * * *
+
+				//   * * * *
+
+				// * * * * *
+
+		int i, j, k, rows=5;
+
+		for(i=1; i<=rows; i++)
+
+		{
+
+			for(j=1; j<=rows-i; j++)
+
+			{
+
+				System.out.print(" ");
+
+			}
+
+			for(k=1; k<=i; k++)
+
+			{
+
+				System.out.print("*");
+
+			}
+
+			System.out.println();
+
+		}
+
+
+
+	}
+
+
+
+}
