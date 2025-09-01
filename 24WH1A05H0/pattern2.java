@@ -1,6 +1,6 @@
 package java_assignment;
 
-public class pettern2 {
+public class pattern2 {
 
 	public static void main(String[] args) {
 				int i, j,n=5;
@@ -17,3 +17,4 @@ public class pettern2 {
 				}
 
 		}
+
