@@ -25,7 +25,7 @@ public class ElectricityBill {
 
         double billAmount = 0;
 
-        // Calculate the bill based on the slabs
+        // Calculate the bill 
         if (unitsConsumed <= 50) {
             billAmount = unitsConsumed * 1;
         } else if (unitsConsumed <= 100) {
@@ -45,3 +45,4 @@ public class ElectricityBill {
         sc.close();
     }
 }
+
