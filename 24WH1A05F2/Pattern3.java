@@ -1,0 +1,30 @@
+package java_lab_exp;
+
+public class Pattern3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int number = 5;
+        int m, n;
+        for (m = 1; m <= number; m++) {
+            for (n = 1; n <= number - m; n++) {
+                System.out.print(" ");
+            }
+            for (n = 1; n <= m * 2 - 1; n++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        for (m = number - 1; m > 0; m--) {
+            for (n = 1; n <= number - m; n++) {
+                System.out.print(" ");
+            }
+            for (n = 1; n <= m * 2 - 1; n++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+	}
+
+}
