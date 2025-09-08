@@ -1,0 +1,34 @@
+package Assignment;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Ass5_common_element {
+
+	public static void main(String[] args) {
+		
+		String[] array1= {"banana","colour","fruit","drink"};
+		String[] array2= {"colour","orange","thing","drink"};
+		
+		Set<String> Set1=new HashSet<>();
+		Set<String> Common=new HashSet<>();
+		
+		for(String s : array1 ) {
+			Set1.add(s);
+		}
+		
+		for(String s : array2) {
+			if(Set1.contains(s)) {
+			Common.add(s);
+		}
+		}
+		
+		System.out.println("comon element:");
+		for(String s : Common) {
+			System.out.println(s);
+		}
+
+	}
+
+}
+
