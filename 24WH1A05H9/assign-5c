@@ -1,0 +1,62 @@
+package addition;
+
+import java.util.Scanner;
+
+public class common {
+
+
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+		Scanner sc=new Scanner(System.in);
+
+		int s1=sc.nextInt();
+
+		int s2=sc.nextInt();
+
+		int arr1[]=new int[s1];
+
+		int arr2[]=new int[s2];
+
+		System.out.println("enter arr1 values");
+
+		for(int i=0;i<arr1.length;i++) {
+
+			arr1[i]=sc.nextInt();
+
+		}
+
+		System.out.println("enter arr2 values");
+
+		for(int j=0;j<s2;j++) {
+
+			arr2[j]=sc.nextInt();
+
+		}
+
+		System.out.println("common values");
+
+		for(int i=0;i<s1;i++) {
+
+			for(int j=0;j<s2;j++) {
+
+				if(arr1[i]==arr2[j]) {
+
+					System.out.println(arr1[i]);
+
+				}
+
+			}
+
+		}
+
+
+
+	}
+
+
+
+}
+
