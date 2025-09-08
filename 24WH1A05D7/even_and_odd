@@ -1,0 +1,66 @@
+package lab_projects;
+
+import java.util.Scanner;
+
+
+
+public class ODDndEVEN {
+
+
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+
+
+		// Ask user how many numbers they want to enter
+
+		System.out.print("Enter the number of integers: ");
+
+		int n = sc.nextInt();
+
+
+
+		int evenSum = 0, oddSum = 0;
+
+
+
+		// Loop to take input and calculate sums
+
+		System.out.println("Enter " + n +  " integers:");
+
+		for (int i = 0; i<n; i++) {
+
+		int num = sc.nextInt();
+
+
+
+		if (num % 2 == 0) {
+
+		evenSum += num; // add to even sum
+
+		} else {
+
+		oddSum += num; // add to odd sum
+
+		}
+
+		}
+
+
+
+		// Print results
+
+		System.out.println("Sum of even numbers = " + evenSum);
+
+		System.out.println("Sum of odd numbers = " + oddSum);
+
+
+
+		sc.close();
+
+		}
+
+		}
+
