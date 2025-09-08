@@ -19,6 +19,7 @@ public class lab_exp8 {
 				}
 			}
 		}
+		System.out.println("final output:");
 		int n=arr.length;
 		if(arr[n-1]%2!=0) {
 		int temp=arr[n-1];
@@ -45,6 +46,7 @@ public class lab_exp8 {
 			}
 			 str = sb.toString();  
 		}
+		System.out.println("after removing duplicates from string :");
 		System.out.println(str);
 		return str;
 	}
@@ -58,6 +60,7 @@ public class lab_exp8 {
 			}
 		}
 		int result[]=new int[j];
+		System.out.println("after extracting digits:");
 		for(int i=0;i<j;i++) {
 			result[i]=arr[i];
 			System.out.print(result[i]);
@@ -67,3 +70,4 @@ public class lab_exp8 {
 	}
 
 }
+
