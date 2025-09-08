@@ -1,0 +1,72 @@
+package cse.com;
+import java.util.Scanner;
+public class Assignment_6 {
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		int choice;
+		String name=null;
+		String pan=null;
+		int aadhar,c_acc,d_acc,amount=1000000,amount_tran;
+		
+		do {
+			System.out.println("\tMenu\n1. Account Creation\n"
+					+ "2. Credit Amount\n"
+					+ "3. Debit Amount\n"
+					+ "4. Mini statement\n"
+					+ "5. Transfer account\n"
+					+ "6. Continue (y/n)");
+
+			choice=sc.nextInt();
+			switch(choice) {
+			case 1: 
+
+				sc.nextLine();
+				System.out.println("Enter Name");
+				name=sc.nextLine();
+				System.out.println("Enter Aadhar Number");
+				aadhar=sc.nextInt();
+				sc.nextLine();
+				System.out.println("Enter PAN Number");
+				pan=sc.next();
+
+				System.out.println("Name= "+name);
+				System.out.println("Aadhar Number= "+aadhar);
+				System.out.println("PAN number= "+pan);
+				System.out.println("Account created");
+				break;
+			case 2:
+				System.out.println("Enter The recivers account number");
+				c_acc=sc.nextInt();
+				System.out.println("Enter thr amount to be transferred");
+				amount_tran=sc.nextInt();
+				amount=amount-amount_tran;
+				System.out.println("Transaction Successful");
+			    break;
+			case 3:
+				System.out.println("Enter The sender account number");
+				d_acc=sc.nextInt();
+				System.out.println("Enter thr amount to be transferred");
+				amount_tran=sc.nextInt();
+				amount=amount+amount_tran;
+				System.out.println("Transaction Successful");
+				break;
+			case 4: 
+				System.out.println("Name= "+name);
+				System.out.println("Balance Amount= "+amount);
+			    break;
+			case 5: 
+				System.out.println("Enter The recivers account number");
+				c_acc=sc.nextInt();
+				System.out.println("Enter The senders account number");
+				d_acc=sc.nextInt();
+				System.out.println("Enter thr amount to be transferred");
+				amount_tran=sc.nextInt();
+				amount=amount+amount_tran;
+				System.out.println("Transaction Successful");
+				break;
+			}
+		
+		}while(choice<6);
+	}
+
+}
