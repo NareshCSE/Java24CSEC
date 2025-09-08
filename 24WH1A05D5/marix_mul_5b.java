@@ -1,6 +1,6 @@
 package practice;
 import java.util.*;
-public class largest_even {
+public class matrix_mul {
 	public static void main(String[] args) {
 		int x,y,m,n;
 		Scanner sc=new Scanner(System.in);
@@ -44,3 +44,4 @@ public class largest_even {
 		}
 	}
 }
+
