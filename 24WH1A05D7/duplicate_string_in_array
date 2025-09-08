@@ -1,0 +1,34 @@
+package labprojects;
+
+
+
+public class duplicate_string {
+
+
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+		System.out.println("the common elements are :");
+
+		String[] array1 = {"vivek athreya", "tharun bhasckar", "hasith goli", "srikanth odela","rajamouli"};
+
+        String[] array2 = {"trivikram", "k.viswanth", "hasith goli", "rajamouli","krishna vamshi"};
+
+        for(int i=0;i < array1.length;i++) {
+
+        	for( int j=0;j<array2.length;j++) {
+
+        		if(array1[i]==(array2[j]))
+
+        			System.out.println(array2[j]);
+
+        	}
+
+        }
+
+	}
+
+}
+
