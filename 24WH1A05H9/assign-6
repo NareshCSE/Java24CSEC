@@ -1,0 +1,113 @@
+package addition;
+
+import java.util.Scanner;
+
+
+
+public class bank {
+
+
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+		int choice,p_acc,aadhar,s_acc,c_amt,d_amt,bal=100000,amt;
+
+		String cus_name=null,pan=null;
+
+		Scanner sc=new Scanner(System.in);
+
+		
+
+		do {
+
+			
+
+		System.out.println("\tMENU\n1.Account Creation\n2.Credit Amount\n3.Debit Amount\n4.Mini Statement\n5.Transfer Account\n6.Exit");
+
+		System.out.println("Enter your choice");
+
+		choice=sc.nextInt();
+
+		switch(choice) {
+
+		case 1:
+
+			 System.out.println("Enter aadhar no. ");
+
+	         aadhar=sc.nextInt();
+
+	         
+
+	         System.out.println("enter pan details ");
+
+		     pan=sc.next();
+
+	         System.out.println("Enter name ");
+
+	         sc.nextLine();
+
+		     cus_name=sc.nextLine();
+
+		     
+
+		     System.out.println("Account is created successfully");
+
+		     break;
+
+		case 2:System.out.println("Enter your account no ");
+
+		       p_acc=sc.nextInt();
+
+		       System.out.println("Enter amount to be credited ");
+
+		       c_amt=sc.nextInt();
+
+		       bal=bal-c_amt;
+
+		       break;
+
+		case 3:System.out.println("Enter your account no. ");
+
+		       p_acc=sc.nextInt();
+
+		       System.out.println("Amount to be debited");
+
+		       d_amt=sc.nextInt();
+
+		       bal=bal+d_amt;
+
+		       break;
+
+		       
+
+		case 4:System.out.println("your balance is "+bal);
+
+		       break;
+
+		       
+
+		case 5:System.out.println("enter your account no. ");
+
+		       p_acc=sc.nextInt();
+
+		       System.out.println("enter reciever account no. ");
+
+		       s_acc=sc.nextInt();
+
+		       System.out.println("enter amount to be transferred");
+
+		       amt=sc.nextInt();
+
+		       bal=bal-amt;
+
+		       break;
+
+		}
+	}while(choice<6);
+
+		}
+
+}
+
