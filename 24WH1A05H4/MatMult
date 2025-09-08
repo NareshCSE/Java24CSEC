@@ -1,0 +1,43 @@
+package assignment;
+import java.util.Scanner;
+public class MatMult {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int i,j;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Size of matrix:");
+		int size1 = sc.nextInt();
+		int[][] mat1 = new int[size1][size1];
+		int[][] mat2 = new int[size1][size1];
+		int[][] mult = new int[size1][size1];
+		System.out.println("Enter mat1 elements:"+ size1*size1);
+		for( i =0 ;i<size1;i++) {
+			for(j = 0 ;j<size1;j++) {
+				mat1[i][j] = sc.nextInt();			}
+		}
+		System.out.println("Enter mat2 elements:"+ size1*size1);
+		for( i =0 ;i<size1;i++) {
+			for(j = 0 ;j<size1;j++) {
+				mat2[i][j] = sc.nextInt();			}
+		}
+		
+		for ( i = 0; i < size1; i++) {
+            for ( j = 0; j < size1; j++) {
+                for (int k = 0; k < size1; k++) { // Or rows2, as they are equal
+                    mult[i][j] += mat1[i][k] * mat2[k][j];
+                }
+            }
+        }
+		for( i =0 ;i<size1;i++) {
+			for(j = 0 ;j<size1;j++) {
+				System.out.print(mult[i][j] + " "); 			
+				}
+			System.out.println();
+		}
+		
+		
+
+	}
+
+}
