@@ -1,0 +1,82 @@
+package lab_programs;
+
+
+
+import java.util.Scanner;
+
+
+
+public class calculator {
+
+
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("enter a number");
+
+		int num1=sc.nextInt();
+
+		System.out.println("enter b number");
+
+		int num2=sc.nextInt();
+
+		System.out.println("enter operators(+,-,*,/,%,^)");
+
+		char operator=sc.next().charAt(0);
+
+		int result=0;
+
+		switch(operator) {
+
+		case '+':
+
+			result=num1+num2;
+
+			break;
+
+		case '-':
+
+			result=num1-num2;
+
+			break;
+
+		case '*':
+
+			result=num1*num2;
+
+			break;
+
+		case '/':
+
+			result=num1/num2;
+
+		    break;
+
+		case '%':
+
+			result=num1%num2;
+
+			break;
+
+		case '^':
+
+			result=num1^num2;
+
+			break;
+
+			}
+
+		System.out.println("result:"+result);
+
+				
+
+		}
+
+
+
+	}
+
