@@ -1,0 +1,25 @@
+package java_worksheet;
+import java.util.Scanner;
+
+public class Sum_even_odd {
+	public static void main(String args [] ) {
+		Scanner sc =new Scanner(System.in);
+		int even_sum=0,odd_sum=0;
+		System.out.println("Enter the number of integers to be taken");
+		int number_of_inputs=sc.nextInt();
+		do {
+			System.out.println("enter ur number");
+			int num=sc.nextInt();
+			if(num%2==0) {
+				even_sum=even_sum+num;
+			}
+			else{
+				odd_sum=odd_sum+num;
+			}
+			number_of_inputs--;
+			}while(number_of_inputs!=0);
+		System.out.println("sum of even and odd integers\neven: "+even_sum+" odd: "+odd_sum);
+		}
+	}
+
+
