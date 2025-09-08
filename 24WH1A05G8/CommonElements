@@ -1,0 +1,17 @@
+ public class CommonElements {
+          public static void main(String[] args) {
+             String[] array1 = {"apple", "banana", "cherry", "date"};
+             String[] array2 = {"banana", "date", "fig", "grape"};
+
+           System.out.print("Common elements: ");
+        
+        for (int i = 0; i < array1.length; i++) {
+            for (int j = 0; j < array2.length; j++) {
+                if (array1[i].equals(array2[j])) {
+                    System.out.print(array1[i] + " ");
+                    break;  // To avoid printing duplicates for the same element
+                }
+            }
+        }
+    }
+}
