@@ -16,7 +16,7 @@ public class bank_application {
        int amount =0;
        do {
     	   System.out.println("MENU CARD");
-    	   System.out.println("1.Account Creation\n2.Credit Amount\3.Debit Aomunt\4.Mini Statement/Balance Enquiry\n5.Transfer Account");
+    	   System.out.println("1.Account Creation\n2.Credit Amount\n3.Debit Aomunt\n4.Mini Statement/Balance Enquiry\n5.Transfer Account");
     	   System.out.println("Enter your choice");
     	   choice = input.nextInt();
     	   switch(choice) {
@@ -68,4 +68,5 @@ public class bank_application {
 
   
                 
+
               
