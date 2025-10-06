@@ -1,0 +1,148 @@
+package com.studyopedia;
+import java.util.Scanner;
+
+class BankAccount {
+    private int accountNumber;
+    private String accountHolder;
+    private int balance;
+
+    public BankAccount(int accountNumber, String accountHolder) {
+        this.accountNumber = accountNumber;
+        this.accountHolder = accountHolder;
+        this.balance = 0;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void deposit(int amount) {
+        if (amount > 0) balance += amount;
+    }
+
+    public boolean withdraw(int amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public void display() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Holder: " + accountHolder);
+        System.out.println("Balance: ₹" + balance);
+    }
+}
+
+public class BankApplication {
+    static Scanner sc = new Scanner(System.in);
+    static BankAccount[] accounts = new BankAccount[100]; // max 100 accounts
+    static int nextAccountNumber = 1001;
+    static int accountCount = 0;
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\n1. Create Account");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Balance Enquiry");
+            System.out.println("5. Exit");
+            System.out.print("Choose option: ");
+
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1: createAccount(); break;
+                case 2: deposit(); break;
+                case 3: withdraw(); break;
+                case 4: balanceEnquiry(); break;
+                case 5:
+                    System.out.println("Thanks for using the bank app!");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    static void createAccount() {
+        if (accountCount >= accounts.length) {
+            System.out.println("Bank full! Cannot create more accounts.");
+            return;
+        }
+
+        System.out.print("Enter account holder name: ");
+        sc.nextLine();  // consume leftover newline
+        String name = sc.nextLine();
+
+        BankAccount acc = new BankAccount(nextAccountNumber, name);
+        accounts[accountCount] = acc;
+        accountCount++;
+
+        System.out.println("Account created. Your account number is: " + nextAccountNumber);
+        nextAccountNumber++;
+    }
+
+    static BankAccount findAccount(int accNo) {
+        for (int i = 0; i < accountCount; i++) {
+            if (accounts[i].getAccountNumber() == accNo) {
+                return accounts[i];
+            }
+        }
+        return null;
+    }
+
+    static void deposit() {
+        System.out.print("Enter account number: ");
+        int accNo = sc.nextInt();
+
+        BankAccount acc = findAccount(accNo);
+        if (acc != null) {
+            System.out.print("Enter amount to deposit: ");
+            int amt = sc.nextInt();
+            acc.deposit(amt);
+            System.out.println("Amount deposited.");
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
+
+    static void withdraw() {
+        System.out.print("Enter account number: ");
+        int accNo = sc.nextInt();
+
+        BankAccount acc = findAccount(accNo);
+        if (acc != null) {
+            System.out.print("Enter amount to withdraw: ");
+            int amt = sc.nextInt();
+            if (acc.withdraw(amt)) {
+                System.out.println("Amount withdrawn.");
+            } else {
+                System.out.println("Insufficient balance or invalid amount.");
+            }
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
+
+    static void balanceEnquiry() {
+        System.out.print("Enter account number: ");
+        int accNo = sc.nextInt();
+
+        BankAccount acc = findAccount(accNo);
+        if (acc != null) {
+            acc.display();
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
+}
