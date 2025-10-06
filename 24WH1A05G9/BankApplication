@@ -1,0 +1,67 @@
+package practice;
+	//BANK APPLICATION MENU
+	import java.util.Scanner;
+	public class Bank_application {
+	    public static void main(String[] arg){
+	        Scanner input = new Scanner(System.in);
+	        int choice;
+	        char ch;
+	        String name,aadhar_no,pan_no;
+	        int credit_amount=0,debit_amount=0;
+	        int balance=0;
+	        int account1,account2;
+	        int amount=0;
+
+	        do{
+	            System.out.println("Menu card");
+	            System.out.println("1.Account creation \n2.credit amount\n3.debit amount\n4.ministatement/balance enquiry\n5.transfer account");
+	            System.out.println("enter your choice");
+	            choice = input.nextInt();
+	            switch(choice){
+	                case 1:
+	                System.out.println("enter customer details such as name,aadhar no,pan no");
+	                name=input.next();
+	                aadhar_no=input.next();
+	                pan_no=input.next();
+	                System.out.println("name of the customer : "+name+"\n"+"aadhar_no : "+aadhar_no+"\n"+"pan_no : "+pan_no);
+	                break;
+
+	                case 2:
+	                System.out.println("enter the amount to be credited :");
+	                credit_amount = input.nextInt();
+	                balance = balance + credit_amount;
+	                System.out.println("the amount credited in your account is :"+credit_amount);   
+	                break;
+
+	                case 3:
+	                System.out.println("enter th amount to be debited :");
+	                debit_amount = input.nextInt();
+	                balance = balance - debit_amount;
+	                System.out.println("the amount debited from your account is :"+debit_amount);   
+	                break;
+
+	                case 4:
+	                System.out.println("MINI STATEMENT");
+	                System.out.println("balance amount in the account : "+balance);
+	                break;
+
+	                case 5:
+	                System.out.println("enter the account no from which you want transfer money : ");
+	                account1 = input.nextInt();
+	                System.out.println("enter the account no into which you want to transfer money:");
+	                account2 = input.nextInt();
+	                System.out.println("enter the amount :");
+	                amount = input.nextInt();
+	                System.out.println(amount+" is transfer from the account "+account1+" to the account "+account2);
+	                break;
+	                
+	                default :
+	                System.out.println("invalid one");
+	            }
+	            System.out.println("enter 'y' to countinue:");
+	            ch = input.next().charAt(0);
+	        }while(ch=='y');
+   input.close();
+	    }
+	} 
+
