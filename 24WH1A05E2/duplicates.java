@@ -43,24 +43,15 @@ int smallestEven = -1;
 
 		        for (int d = 9; d >= 0; d--) {
 
-		            if (present[d] && d != smallestEven) {
+if (present[d] && d != smallestEven) {
 
-		                System.out.print(d);
+ System.out.print(d);
 
 		            }
 
-		        }
+		        }  System.out.println(smallestEven);
+	       
 
-
-
-		     System.out.println(smallestEven);
-
-		       
-
-		    }
-
-		
-
-	}
+		    }	}
 
 
