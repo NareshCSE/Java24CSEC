@@ -1,0 +1,34 @@
+package lab_assignments;
+class Bank {
+    public int getBalance() {
+        return 0; 
+    }
+}
+class BankA extends Bank {
+    public int getBalance() {
+        return 1000; 
+    }
+}
+class BankB extends Bank {
+    public int getBalance() {
+        return 1500; 
+    }
+}
+class BankC extends Bank {
+    public int getBalance() {
+        return 2000;
+    }
+}
+public class Assignment_10_Bank {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BankA bankA = new BankA();
+        BankB bankB = new BankB();
+        BankC bankC = new BankC();
+        System.out.println("Money deposited in Bank A: $" + bankA.getBalance());
+
+        System.out.println("Money deposited in Bank B: $" + bankB.getBalance());
+
+        System.out.println("Money deposited in Bank C: $" + bankC.getBalance());
+	}
+}
