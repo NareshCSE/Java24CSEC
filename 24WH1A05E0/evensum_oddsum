@@ -1,0 +1,22 @@
+package sample;
+import java.util.Scanner;
+public class SumEvenOdd {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+ Scanner scanner = new Scanner(System.in);
+ System.out.print("How many numbers do you want to enter? ");
+ int count = scanner.nextInt();
+ int evenSum = 0;
+ int oddSum = 0;
+ for (int i = 1; i <= count; i++) {
+ System.out.print("Enter number " + i + ": ");
+ int num = scanner.nextInt();
+ if (num % 2 == 0) {
+ evenSum += num;
+ } else {
+ oddSum += num;
+ }
+ }
+ System.out.println("Sum of even numbers: " + evenSum);
+ System.out.println("Sum of odd numbers: " + oddSum);
+ }
