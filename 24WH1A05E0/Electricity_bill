@@ -1,0 +1,27 @@
+package sample;
+import java.util.Scanner;
+public class EectricityBill {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+Scanner scanner = new Scanner(System.in);
+System.out.print("Enter old meter reading: ");
+ int oldReading = scanner.nextInt();
+ System.out.print("Enter new meter reading: ");
+int newReading = scanner.nextInt();
+int units = newReading - oldReading;
+int charge = 0;
+if (units <= 50) {
+charge = units * 1;
+} else if (units <= 100) {
+charge = (50 * 1) + (units - 50) * 2;
+} else if (units <= 200) {
+charge = (50 * 1) + (50 * 2) + (units - 100) * 3;
+} else if (units <= 400) {
+charge = (50 * 1) + (50 * 2) + (100 * 3) + (units - 200) * 4;
+} else {
+charge = (50 * 1) + (50 * 2) + (100 * 3) + (200 * 4) + (units - 400) * 5;
+}
+System.out.println("Total units consumed: " + units);
+System.out.println("Total electricity bill: Rs " + charge);
+scanner.close();
+ }
