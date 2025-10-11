@@ -39,3 +39,4 @@ public class Assignment8 {
         System.out.println(evenDigit);
     }
 }
+
