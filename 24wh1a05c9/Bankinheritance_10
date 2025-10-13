@@ -1,0 +1,35 @@
+package javalab;
+	class Banks{
+	int	getBalance(){
+			return 0;
+		}
+	}
+	class BankA extends Banks{
+	int	getBalance(){
+		return 1000;
+	}
+	}
+	class BankB extends Banks{
+		int getBalance() {
+			return 1500;
+		}
+	}
+	class BankC extends Banks{
+		int getBalance() {
+			return 2000;
+		}
+	}
+
+public class Bankinterface {
+
+	public static void main(String[] args) {
+		Banks a=new BankA();
+		Banks b=new BankB();
+		Banks c=new BankC();
+		System.out.println("Money in the bank "+a.getBalance());
+		System.out.println("Money in the bank "+b.getBalance());
+		System.out.println("Money in the bank "+c.getBalance());
+
+	}
+
+}
