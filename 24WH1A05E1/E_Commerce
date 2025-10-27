@@ -1,7 +1,6 @@
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-// Product Bean Class
 class Product {
     private int id;
     private String name;
@@ -18,19 +17,6 @@ class Product {
     public double getPrice() { return price; }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Product)) return false;
-        Product p = (Product) obj;
-        return this.id == p.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Integer.hashCode(id);
-    }
-
-    @Override
     public String toString() {
         return "Product ID: " + id + ", Name: " + name + ", Price: ₹" + price;
     }
@@ -38,20 +24,20 @@ class Product {
 
 // Seller Class
 class Seller {
-    private HashSet<Product> productSet = new HashSet<>();
+    private ArrayList<Product> productList = new ArrayList<>();
 
     public void addProduct(Product product) {
-        productSet.add(product);
+        productList.add(product);
     }
 
-    public HashSet<Product> getProducts() {
-        return productSet;
+    public ArrayList<Product> getProducts() {
+        return productList;
     }
 }
 
 // Customer Class
 class Customer {
-    public void orderProducts(HashSet<Product> availableProducts, int[] orderedIds) {
+    public void orderProducts(ArrayList<Product> availableProducts, int[] orderedIds) {
         double totalPrice = 0;
         System.out.println("\nOrdered Products:");
 
@@ -74,8 +60,8 @@ class Customer {
     }
 }
 
-// Main Client Class
-public class E_Commerce_Application {
+// Main Application
+public class E_Commerce{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Seller seller = new Seller();
