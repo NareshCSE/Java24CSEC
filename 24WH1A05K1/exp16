@@ -1,0 +1,40 @@
+package JAVA_AWT;
+import java.util.*;
+class PinMisMatchException extends Exception {
+	private static final long serialVersionUID = 1L;
+
+	public PinMisMatchException(String message) {
+        super(message);
+    }
+}
+public class exp_16 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        final int correctPin = 1234; 
+        int attempts = 0;
+        System.out.print("Enter Account Holder Name: ");
+        String name = sc.nextLine();
+
+        while (attempts < 3) {
+            System.out.print("Enter your PIN: ");
+            int enteredPin = sc.nextInt();
+
+            if (enteredPin == correctPin) {
+                System.out.println("Welcome " + name + "! Access Granted.");
+                return; 
+            } else {
+                attempts++;
+                if (attempts == 3) {
+                    try {
+                        throw new PinMisMatchException("Sorry..Your Account Has been Locked.");
+                    } catch (PinMisMatchException e) {
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    System.out.println("Incorrect PIN! Try again (" + (3 - attempts) + " attempts left).");
+                }
+            }
+        }
+        sc.close();
+    }
+}
