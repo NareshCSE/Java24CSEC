@@ -1,7 +1,5 @@
 package java_practice;
 
-//import java.CreditsNotSufficientException;
-
 class CreditsNotSufficientException extends Exception{
 	private int requiredcredits=50;
 	private int currentcredits;
@@ -61,3 +59,4 @@ public class exp_15 {
 	}
 
 }
+
