@@ -1,0 +1,47 @@
+package javaprac;
+import java.util.Scanner;
+ 
+class PinwrongException extends Exception{ 
+	PinwrongException(String message){
+		super(message);                  // here super is used to pass the msg to the parent class
+	}
+	
+	
+}
+
+public class ATMpinverify {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		 final int correctpin  = 1234;// here we used final int because, it means that this correct pin can never be changed
+		 int Enteredpin;
+		 int attempts=0;
+		 System.out.println("Enter the Account Holders Name:");
+		 String AccholderName = sc.nextLine();
+		 while (attempts < 3) {
+			 System.out.println("Enter your pin:");
+			 Enteredpin = sc.nextInt();
+		   if(correctpin==Enteredpin)	{
+			   System.out.println("Welcome " +  AccholderName + " Access Granted");
+			   sc.close();
+			   return;
+		   }
+		   else {
+			    attempts++;
+			    System.out.println("Incorrect PIN,Attempt " + attempts + " of 3.");
+		   }
+		   
+		 }
+		 try {
+	            throw new PinwrongException("Sorry... Your Account Has Been Locked.");
+	        } catch (PinwrongException e) {
+	            System.out.println(e.getMessage());
+	        }
+
+	        sc.close();
+	    }
+		 
+		
+	}
+
+
