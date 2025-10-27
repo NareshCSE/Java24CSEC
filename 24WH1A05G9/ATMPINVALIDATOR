@@ -1,0 +1,39 @@
+package wh1a05g9;
+import java.util.Scanner;
+class PinMisMatchedException extends Exception {
+	PinMisMatchedException(String message){
+	super(message);
+}
+}
+public class ATMPINValidator {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String accHolderName;
+		int crtPIN = 1234;// actual pin
+		int enteredPIN;
+		System.out.println("Enter account holder name : ");
+		accHolderName = sc.nextLine();
+		int attempts =0;
+		while(attempts<3) {
+			System.out.println("Enetr PIN: ");
+			enteredPIN = sc.nextInt();
+			if(enteredPIN == crtPIN) {
+				System.out.println("Welcome " + accHolderName + " access Granted!");
+        sc.close();
+			return;
+			}
+			else {
+				attempts++;
+				System.out.println("Incorrect PIN, " + attempts + " out of 3");
+			}
+			}
+		try {
+			throw new PinMisMatchedException("Sorry..your account has been bolcked");
+		}
+		catch(PinMisMatchedException e){
+			System.out.println(e.getMessage());	
+		}
+	sc.close();
+	}
+}
