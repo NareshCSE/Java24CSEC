@@ -1,0 +1,36 @@
+package javaprac;
+import java.util.Scanner;
+ 
+class CreditsnotSufficientException extends Exception{
+	CreditsnotSufficientException(String message){
+		super(message);
+	}
+}
+
+
+public class Creditschecking {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int credits;
+		System.out.println("Enter ur credits");
+		credits = sc.nextInt();
+	if(credits>=50) {
+		System.out.println("Your credits are enough");
+	}	
+	
+	try {
+        throw new CreditsnotSufficientException("Sorry... Your credits are not sufficient.");
+    } catch (CreditsnotSufficientException e) {
+        System.out.println(e.getMessage());
+    }
+
+    sc.close();
+    
+    
+    
+    
+    }
+
+}
