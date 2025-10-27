@@ -1,0 +1,42 @@
+package JAVA_AWT;
+class CreditsNotSuffiecientException extends Exception {
+    public CreditsNotSuffiecientException(int credits) {
+        super("Credits are not sufficient! Minimum required: 50. You have only " + credits + " credits.");
+    }
+}
+public class CreditsNotSuffiecient {
+    public static void checkCredits(int credits) throws CreditsNotSuffiecientException {
+        if (credits < 50) {
+            throw new CreditsNotSuffiecientException(credits);
+        } else {
+            System.out.println("Access granted. You have " + credits + " credits.");
+        }
+    }
+    public static void studentPortalAccess(int credits) throws CreditsNotSuffiecientException {
+        System.out.println("\n[Student Portal Access]");
+        checkCredits(credits);
+    }
+    public static void courseRegistration(int credits) throws CreditsNotSuffiecientException {
+        System.out.println("\n[Course Registration]");
+        checkCredits(credits);
+    }
+    public static void examEntry(int credits) throws CreditsNotSuffiecientException {
+        System.out.println("\n[Exam Entry]");
+        checkCredits(credits);
+    }
+    public static void main(String[] args) {
+        int[] creditsArray = {89,96,78,6};
+
+        for (int credits : creditsArray) {
+            try {
+                studentPortalAccess(credits);
+                courseRegistration(credits);
+                examEntry(credits);
+            } catch (CreditsNotSuffiecientException e) {
+                System.out.println("Exception caught: " + e.getMessage());
+            } finally {
+                System.out.println("---- End of this test case ----\n");
+            }
+        }
+    }
+}
