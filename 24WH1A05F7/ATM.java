@@ -9,17 +9,17 @@ public class ATM {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		String accHolderName;
+		String accountHolderName;
 		int correctPIN = 1234;
 		int enteredPIN;
 		System.out.println("Enter account holder name : ");
-		accHolderName = sc.nextLine();
+		accountHolderName = sc.nextLine();
 		int attempts =0;
 		while(attempts<3) {
 			System.out.println("Enter PIN: ");
 			enteredPIN = sc.nextInt();
 			if(enteredPIN == correctPIN) {
-				System.out.println("Welcome " + accHolderName + " access Granted!");
+				System.out.println("Welcome " + accountHolderName + " access Granted!");
         sc.close();
 			return;
 			}
@@ -29,7 +29,7 @@ public class ATM {
 			}
 			}
 		try {
-			throw new PinMisMatchedException("Sorry..your account has been bolcked");
+			throw new PinMisMatchedException("Sorry..your account has been blocked");
 		}
 		catch(PinMisMatchedException e){
 			System.out.println(e.getMessage());	
