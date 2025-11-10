@@ -1,0 +1,125 @@
+package Practice;
+
+import java.util.*;
+
+class Product {
+ private int id;
+ private String name;
+ private double price;
+ 
+ public Product(int id, String name, double price) {
+     this.id = id;
+     this.name = name;
+     this.price = price;
+ }
+
+ public int getId() {
+     return id;
+ }
+ public String getName() {
+     return name;
+ }
+ public double getPrice() {
+     return price;
+ }
+
+ @Override
+ public String toString() {
+     return "[Product ID: " + id + ", Name: " + name + ", Price: ₹" + price+"]";
+ }
+
+ @Override
+ public int hashCode() {
+     return Objects.hash(id);
+ }
+
+ @Override
+ public boolean equals(Object obj) {
+     if (this == obj) return true;
+     if (!(obj instanceof Product)) return false;
+     Product other = (Product) obj;
+     return id == other.id;
+ }
+}
+
+class Seller {
+ private HashSet<Product> products = new HashSet<>();
+
+ public void addProduct(Product p) {
+     products.add(p);
+ }
+
+ public HashSet<Product> getProducts() {
+     return products;
+ }
+
+ public void showProducts() {
+     System.out.println(" Available Products");
+     for (Product p : products) {
+         System.out.println(p);
+     }
+ }
+}
+
+class Customer {
+ private List<Product> orderedProducts = new ArrayList<>();
+
+ public void orderProduct(int id, HashSet<Product> availableProducts) {
+     boolean found = false;
+     for (Product p : availableProducts) {
+         if (p.getId() == id) {
+             orderedProducts.add(p);
+             System.out.println("Added to cart: " + p.getName());
+             found = true;
+             break;
+         }
+     }
+     if (!found) {
+         System.out.println("Product with ID " + id + " not found!");
+     }
+ }
+
+ public void showBill() {
+     if (orderedProducts==null) {
+         System.out.println("No items ordered.");
+         return;
+     }
+     double total = 0;
+     System.out.println("\n Bill Details");
+     for (Product p : orderedProducts) {
+         System.out.println(p);
+         total += p.getPrice();
+     }
+     System.out.println(" ");
+     System.out.println("Total Price: ₹" + total);
+ }
+}
+
+public class ASS18_24WH1A05D1 {
+ public static void main(String[] args) {
+     Scanner sc = new Scanner(System.in);
+
+     Seller seller = new Seller();
+     seller.addProduct(new Product(101, "Laptop", 55000));
+     seller.addProduct(new Product(102, "Smartphone", 25000));
+     seller.addProduct(new Product(103, "Headphones", 2000));
+     seller.addProduct(new Product(104, "Smartwatch", 8000));
+
+     seller.showProducts();
+
+     Customer customer = new Customer();
+
+     System.out.println("\nEnter product IDs to order (0 to finish):");
+     while (true) {
+         System.out.print("Product ID: ");
+         int id = sc.nextInt();
+         if (id == 0) break;
+         customer.orderProduct(id, seller.getProducts());
+     }
+
+     customer.showBill();
+
+     sc.close();
+ }
+}
+
