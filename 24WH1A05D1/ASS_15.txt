@@ -1,0 +1,91 @@
+package Practice;
+
+class CreditsNotSufficientException extends Exception {
+ public CreditsNotSufficientException(String message) {
+     super(message);
+ }
+}
+
+class Student {
+ private String name;
+ private int credits;
+
+ public Student(String name, int credits) {
+     this.name = name;
+     this.credits = credits;
+ }
+
+ public void checkCredits() throws CreditsNotSufficientException {
+     if (credits < 50) {
+         throw new CreditsNotSufficientException(
+             "Credits not sufficient for student: " + name + ". Minimum required is 50, but found " + credits + "."
+         );
+     } else {
+         System.out.println(name + " has sufficient credits: " + credits);
+     }
+ }
+}
+
+
+
+class ExamDepartment {
+ public void verifyStudentCredits(Student student) {
+     try {
+         System.out.println("Exam Department verifying credits...");
+         student.checkCredits();
+     } catch (CreditsNotSufficientException e) {
+         System.err.println("Exam Department Error: " + e.getMessage());
+     }
+ }
+
+}
+
+class LibraryDepartment {
+ public void validateLibraryAccess(Student student) {
+     try {
+         System.out.println("Library Department validating credits...");
+         student.checkCredits();
+     } catch (CreditsNotSufficientException e) {
+         System.err.println("Library Department Error: " + e.getMessage());
+     }
+ }
+
+}
+
+
+
+
+
+public class ASS15_24WH1A05D1 {
+ public static void main(String[] args) {
+
+     Student s1 = new Student("XYZ", 70);
+
+     Student s2 = new Student("QWE", 45);
+
+     ExamDepartment examDept = new ExamDepartment();
+
+     LibraryDepartment libraryDept = new LibraryDepartment();
+
+     System.out.println("\n--- Checking Credits in Exam Department ---");
+
+     examDept.verifyStudentCredits(s1);
+
+     examDept.verifyStudentCredits(s2);
+
+
+
+     System.out.println("\n--- Checking Credits in Library Department ---");
+
+     libraryDept.validateLibraryAccess(s1);
+
+     libraryDept.validateLibraryAccess(s2);
+
+ }
+
+}
+
+
+
+
+
