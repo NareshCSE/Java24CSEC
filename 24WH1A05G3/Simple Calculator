@@ -1,0 +1,90 @@
+ 21)Write a Java program that works as a simple calculator. Use a grid layout to arrange buttons for the digits and for the +, -,*, % operations. Add a text field to display the result.
+ Handle any possible exceptions like divided by zero.
+ CODE:
+ import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class SimpleCalculator extends JFrame implements ActionListener {
+    private JTextField display;
+    private String operator = "";
+    private double num1 = 0;
+    public SimpleCalculator() {
+        setTitle("Simple Calculator");
+        setSize(300, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        // Display
+        display = new JTextField();
+        display.setEditable(false);
+        display.setFont(new Font("Arial", Font.BOLD, 24));
+        add(display, BorderLayout.NORTH);
+        // Buttons panel
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 4, 5, 5));
+        String[] buttons = {
+            "7", "8", "9", "+",
+            "4", "5", "6", "-",
+            "1", "2", "3", "*",
+            "0", "%", "C", "="
+        };
+        for (String txt : buttons) {
+            JButton btn = new JButton(txt);
+            btn.setFont(new Font("Arial", Font.BOLD, 22));
+            btn.addActionListener(this);
+            panel.add(btn);
+        }
+        add(panel, BorderLayout.CENTER);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String cmd = e.getActionCommand();
+        try {
+            if (cmd.matches("[0-9]")) {
+                // Append digit
+                display.setText(display.getText() + cmd);
+            }
+            else if (cmd.equals("C")) {
+                // Reset calculator
+                display.setText("");
+                operator = "";
+                num1 = 0;
+            }
+            else if (cmd.equals("=")) {
+                if (operator.isEmpty() || display.getText().isEmpty()) {
+                    display.setText("");
+                    return;
+                }
+                double num2 = Double.parseDouble(display.getText());
+                double result = 0;
+                switch (operator) {
+                    case "+" -> result = num1 + num2;
+                    case "-" -> result = num1 - num2;
+                    case "*" -> result = num1 * num2;
+                    case "%" -> {
+                        if (num2 == 0) throw new ArithmeticException("Cannot divide by zero");
+                        result = num1 % num2;
+                    }
+                }
+                display.setText(String.valueOf(result));
+                operator = "";  // reset
+            }
+            else {
+                // Operator pressed
+                if (!display.getText().isEmpty()) {
+                    num1 = Double.parseDouble(display.getText());
+                }
+                operator = cmd;
+                display.setText("");
+            }
+        } catch (NumberFormatException ex) {
+            display.setText("Invalid Input");
+        } catch (ArithmeticException ex) {
+            display.setText("Error: " + ex.getMessage());
+        } catch (Exception ex) {
+            display.setText("Error");
+        }
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new SimpleCalculator().setVisible(true));
+    }
+}
