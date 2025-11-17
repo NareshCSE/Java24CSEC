@@ -1,0 +1,54 @@
+package assignment;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class CountChar extends JFrame {
+private JTextField ip;
+private JTextField op;
+private JButton count;
+public CountChar() {
+	ip = new JTextField(10);
+	op = new JTextField(20);
+	op.setEditable(false);
+	count = new JButton("count");
+	count.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			countch();
+		}
+
+		private void countch() {
+			// TODO Auto-generated method stub
+			int c=0;
+			String s = ip.getText();
+			for(char ch :s.toCharArray()) {
+				if((int)ch<'z'&& (int)ch <'A')
+					c++;
+			}
+			op.setText(String.valueOf(c));
+		}
+	});
+	
+	setLayout(new FlowLayout());
+	add(ip);
+	add(count);
+	add(new JLabel("No.of Char:"));
+	add(op);
+	setTitle("Count");
+	setSize(300,300);
+	setLocationRelativeTo(null);
+	setVisible(true);
+
+}
+	public static void main(String[] args) {
+		new CountChar();
+
+	}
+
+}
