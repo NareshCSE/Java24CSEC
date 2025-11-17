@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class TextCounterApp extends JFrame implements ActionListener {
+    private JTextArea textArea;
+    private JButton countButton;
+    private JLabel charLabel, wordLabel;
+    public TextCounterApp() {
+        setTitle("Word and Character Counter");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Layout
+        setLayout(new BorderLayout());
+        // Text area
+        textArea = new JTextArea();
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+        // Panel for button and results
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 1));
+        countButton = new JButton("Count");
+        countButton.addActionListener(this);
+        charLabel = new JLabel("Characters: ");
+        wordLabel = new JLabel("Words: ");
+        panel.add(countButton);
+        panel.add(charLabel);
+        panel.add(wordLabel);
+        add(panel, BorderLayout.SOUTH);
+        setVisible(true);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String text = textArea.getText();
+        // Character count
+        int charCount = text.length();
+        // Word count (trim and split by whitespace)
+        String trimmed = text.trim();
+        int wordCount = trimmed.isEmpty() ? 0 : trimmed.split("\\s+").length;
+        // Update labels
+        charLabel.setText("Characters: " + charCount);
+        wordLabel.setText("Words: " + wordCount);
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(TextCounterApp::new);
+    }
+}
