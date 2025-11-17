@@ -1,61 +1,58 @@
 package src;
-
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class WordCharCountApp extends Frame implements ActionListener {
-    private TextArea textArea;
-    private Label resultLabel;
-    private Button countButton;
+public class WordCharCountApp extends JFrame implements ActionListener {
+
+    JTextArea textArea;
+    JButton countButton;
+    JLabel charLabel, wordLabel;
 
     public WordCharCountApp() {
-        // Frame setup
-        setTitle("Word and Character Counter");
-        setSize(500, 300);
+        setTitle("Word & Character Counter - 24WH1A05J1");
+        setSize(500, 400);
         setLayout(new BorderLayout());
 
-        // Text area for paragraph input
-        textArea = new TextArea("", 10, 40, TextArea.SCROLLBARS_VERTICAL_ONLY);
-        add(textArea, BorderLayout.CENTER);
+        textArea = new JTextArea();
+        textArea.setLineWrap(true);        // Disable horizontal scrolling
+        textArea.setWrapStyleWord(true);   // Wrap long words properly
 
-        // Panel for button and result
-        Panel panel = new Panel();
-        panel.setLayout(new FlowLayout());
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
 
-        countButton = new Button("Count");
+        JPanel panel = new JPanel();
+        countButton = new JButton("Count");
         countButton.addActionListener(this);
-        panel.add(countButton);
 
-        resultLabel = new Label("Characters: 0 | Words: 0");
-        panel.add(resultLabel);
+        charLabel = new JLabel("Characters: 0");
+        wordLabel = new JLabel("Words: 0");
+
+        panel.add(countButton);
+        panel.add(charLabel);
+        panel.add(wordLabel);
 
         add(panel, BorderLayout.SOUTH);
 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
-        // Close window properly
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent we) {
-                dispose();
-            }
-        });
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String text = textArea.getText();
-
-        // Character count (excluding spaces if you want, but here we include all)
+        String text = textArea.getText().trim();
         int charCount = text.length();
+        int wordCount = 0;
 
-        // Word count (split by whitespace)
-        String[] words = text.trim().split("\\s+");
-        int wordCount = text.trim().isEmpty() ? 0 : words.length;
+        if (!text.isEmpty()) {
+            wordCount = text.split("\\s+").length;
+        }
 
-        resultLabel.setText("Characters: " + charCount + " | Words: " + wordCount);
+        charLabel.setText("Characters: " + charCount);
+        wordLabel.setText("Words: " + wordCount);
     }
 
     public static void main(String[] args) {
         new WordCharCountApp();
     }
 }
+
