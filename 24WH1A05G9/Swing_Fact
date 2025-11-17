@@ -1,0 +1,60 @@
+package assignment;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigInteger;
+public class Ass22_Factorial extends JFrame {
+	private JTextField input;
+	private JTextField output;
+	private JButton compute;
+	
+	public Ass22_Factorial() {
+		super("Factorial Calculator");
+		input = new JTextField(10);
+		output = new JTextField(20);
+		output.setEditable(false);
+		compute = new JButton("Compute");
+		
+		setLayout(new FlowLayout());
+		add(new JLabel("Enter Integer:"));
+		add(input);
+		add(compute);
+		add(new JLabel("Factorial :"));
+		add(output);
+		
+		compute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				computeFactorial();
+			}
+
+			private void computeFactorial() {
+				try {
+					int n = Integer.parseInt(input.getText());
+					if(n<0) {
+						output.setText("Error");
+						return;
+					}
+					BigInteger fact = BigInteger.ONE;
+					for(int i=1;i<=n;i++) {
+						fact = fact.multiply(BigInteger.valueOf(i));
+					}
+					output.setText(fact.toString());	
+				}
+				catch(NumberFormatException ex){
+					output.setText("Invalid input!");
+				}
+				
+			}
+		});
+		setSize(350,350);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setVisible(true);
+		
+	}
+	public static void main(String[] args) {
+		new Ass22_Factorial();
+	}
+
+}
