@@ -1,34 +1,33 @@
 package practice;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 public class Swingapp {
 
 	public static void main(String[] args) {
 		
-		Frame frame =new Frame("Factorial");
+		JFrame frame =new JFrame("Factorial");
 		frame.setSize(400,500);
 		frame.setVisible(true);
 		
-		Button button =new Button("compute");
-		button.setBounds(200, 450, 50, 15);
+		JButton button =new JButton("compute");
+		button.setBounds(200, 450, 100, 15);
 		frame.add(button);
 		
 		frame.setLayout(null);
 		
-		Label label=new Label("Enter number:");
-		label.setBounds(50,50, 80, 15);
+		JLabel label=new JLabel("Enter number:");
+		label.setBounds(50,50, 130, 15);
 		frame.add(label);
 		
-		Label label2=new Label("Result:");
-		label2.setBounds(60,70, 80, 15);
+		JLabel label2=new JLabel("Result:");
+		label2.setBounds(60,70, 200, 15);
 		frame.add(label2);
 		
-		TextField textfield=new TextField();
-		textfield.setBounds( 160, 50, 150, 15);
+		JTextField textfield=new JTextField();
+		textfield.setBounds( 160, 50, 200, 15);
 		frame.add(textfield);
 		
-		TextField textfield2=new TextField();
+		JTextField textfield2=new JTextField();
 		textfield2.setBounds( 160, 70, 150, 15);
 		frame.add(textfield2);
 		
