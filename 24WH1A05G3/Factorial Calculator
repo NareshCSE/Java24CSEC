@@ -1,0 +1,52 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class FactorialCalculator extends JFrame implements ActionListener {
+    private JTextField inputField;
+    private JTextField resultField;
+    private JButton computeButton;
+    public FactorialCalculator() {
+        setTitle("Factorial Calculator");
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(3, 2, 10, 10));
+        // UI components
+        add(new JLabel("Enter an integer: "));
+        inputField = new JTextField();
+        add(inputField);
+        add(new JLabel("Factorial value: "));
+        resultField = new JTextField();
+        resultField.setEditable(false);
+        add(resultField);
+        computeButton = new JButton("Compute");
+        computeButton.addActionListener(this);
+        add(computeButton);
+        setVisible(true);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            int n = Integer.parseInt(inputField.getText());
+
+            if (n < 0) {
+                resultField.setText("Error: Negative number!");
+                return;
+            }
+            long factorial = 1;
+            for (int i = 1; i <= n; i++) {
+                factorial *= i;
+                // Avoid overflow beyond long range
+                if (factorial < 0) {
+                    resultField.setText("Overflow!");
+                    return;
+                }
+            }
+            resultField.setText(String.valueOf(factorial));
+        } catch (NumberFormatException ex) {
+            resultField.setText("Invalid Input!");
+        }
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(FactorialCalculator::new);
+    }
+}
