@@ -12,7 +12,7 @@ public class CheckPalindrome_strings {
 			
 		}
 		System.out.println(reversed+" "+str);
-		if(reversed==str)
+		if(reversed.equals(str))
 		{
 			System.out.println("the given string is palindrome");
 		}
@@ -24,3 +24,4 @@ public class CheckPalindrome_strings {
 	}
 
 }
+
