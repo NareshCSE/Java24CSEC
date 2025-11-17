@@ -1,8 +1,5 @@
-package basics;
-
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Scanner;
