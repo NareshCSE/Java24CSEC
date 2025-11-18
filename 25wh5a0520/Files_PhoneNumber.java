@@ -1,0 +1,39 @@
+package java_25wh5a0520;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Scanner;
+public class Files_PhoneNumber {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		Map<String, String> table=new Hashtable();
+		String phone=null;
+		String name = null;
+		try {
+			FileWriter fw=new FileWriter("myfile.txt");
+			String str="siri \t 1121683325";
+			for(int i=0;i<str.length();i++) {
+				fw.write(str.charAt(i));
+			}
+			 String[] fields = str.split("\t");
+             if (fields.length == 2) {
+                 name = fields[0].trim();
+                 phone = fields[1].trim();
+                 table.put(name, phone);
+             }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("table contains "+table.get(name)+"="+name);
+		System.out.println("enter name");
+		String name1=sc.next();
+		if(table.containsKey(name1))
+			System.out.println("data is found :"+table.toString());
+		else
+			System.out.println("not found");
+	}
+
+}
+
