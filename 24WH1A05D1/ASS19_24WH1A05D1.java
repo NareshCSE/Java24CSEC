@@ -1,53 +1,45 @@
-package Ass;
+package javapratice;
 
-import java.io.*;
-import java.util.*;
-
-public class ASS19_24WH1A05D1 {
-    public static void main(String[] args) {
-        
-        Hashtable<String, String> nameToPhone = new Hashtable<>();
-        Hashtable<String, String> phoneToName = new Hashtable<>();
-
-        Scanner input = new Scanner(System.in);
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("phoneData.txt"));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-               
-                String[] parts = line.split("\t");
-
-                if (parts.length == 2) {
-                    String name = parts[0].trim();
-                    String phone = parts[1].trim();
-
-                    nameToPhone.put(name, phone);
-                    phoneToName.put(phone, name);
-                }
-            }
-            reader.close();
-        } 
-        catch (IOException e) {
-            System.out.println("Error reading file.");
-            return;
-        }
-
-        // --- User lookup ---
-        System.out.print("Enter a name or phone number: ");
-        String query = input.nextLine().trim();
-
-        if (nameToPhone.containsKey(query)) {
-            System.out.println("Phone Number: " + nameToPhone.get(query));
-        } 
-        else if (phoneToName.containsKey(query)) {
-            System.out.println("Name: " + phoneToName.get(query));
-        } 
-        else {
-            System.out.println("No match found.");
-        }
-
-        input.close();
-    }
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Scanner;
+public class ASS_19_24WH1A05D1 {
+   public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       Map<String, String> table = new Hashtable<>();
+       try (FileWriter fw = new FileWriter("myfile.txt")) {
+           String[] entries = {
+               "TEJ \t 9884836996",
+               "SAI \t 8375769396",
+               "LILY \t 9875805883",
+               "POOJA  \t 9285764949",
+               "RAVI   \t 8749867948"
+           };
+           for (String entry : entries) {
+               fw.write(entry + "\n"); // write each entry to file
+               String[] fields = entry.split("\t");
+               if (fields.length == 2) {
+                   String name = fields[0].trim();
+                   String phone = fields[1].trim();
+                   table.put(name, phone);
+               }
+           }
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       System.out.println("Hashtable contents:");
+       for (Map.Entry<String, String> entry : table.entrySet()) {
+           System.out.println(entry.getKey() + " = " + entry.getValue());
+       }
+       System.out.println("\nEnter a name to search:");
+       String nameInput = sc.next();
+       if (table.containsKey(nameInput)) {
+           System.out.println("Data found: " + nameInput + " = " + table.get(nameInput));
+       } else {
+           System.out.println("Not found.");
+       }
+       sc.close();
+   }
 }
