@@ -1,0 +1,51 @@
+package Collections;
+
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.*;
+
+public class fact extends JFrame {
+private JTextField number;
+private JButton fact;
+private JTextField display;
+public fact() {
+	 setSize(400, 300);
+     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	number = new JTextField(10);
+	fact = new JButton("compute");
+	display = new JTextField(10);
+	display.setEnabled(false);
+	setLayout(new FlowLayout());
+	add(new JLabel("Enter a number"));
+	add(number);
+	add(fact);
+	add(new JLabel("Factorial:"));
+	add(display);
+	setVisible(true);
+	fact.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			int n = Integer.parseInt(number.getText());
+			int result =1;
+			for(int i=1;i<=n;i++) {
+				result*=i;
+			}
+			display.setText(String.valueOf(result));
+		}	
+	});
+}
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+		new fact();
+
+	}
+
+}
