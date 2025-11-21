@@ -1,35 +1,15 @@
 package javaprograms;
-
-//Java program to illustrate the GridLayout
-import javax.swing.*;
 import java.awt.*;
-
-//class GridLayout extends JFrame
 public class GridLayoutDemo extends JFrame {
-
 GridLayoutDemo() {
-
- // Creating Object P1 of JPanel class
- JPanel p1 = new JPanel();
-
- // set the layout
- p1.setLayout(new GridLayout(4, 2));
-
- // Creating Object of "FlowLayout" class
+JPanel p1 = new JPanel();
+p1.setLayout(new GridLayout(4, 2));
  FlowLayout layout = new FlowLayout();
-
- // Creating Object P2 of JPanel class
- JPanel p2 = new JPanel();
-
- // set the layout
+JPanel p2 = new JPanel();
  p2.setLayout(layout);
+JLabel one, two, three, four;JTextField tname, tsalary, tcode, tdesig;
 
- // Declaration of objects of JLabel class.
- JLabel one, two, three, four;
-
- // Declaration of objects of JTextField class.
- JTextField tname, tsalary, tcode, tdesig;
-
+ 
  // Declaration of objects of JButton class.
  JButton buttonSave, buttonExit;
 
@@ -65,12 +45,10 @@ GridLayoutDemo() {
  // "tsalary" of JTextField class.
  tsalary = new JTextField(20);
 
- // Initialization of object
- // "buttonsave" of JButton class.
+ 
  buttonSave = new JButton("SAVE");
 
- // Initialization of object
- // "buttonexit" of JButton class.
+ 
  buttonExit = new JButton("EXIT");
 
  // Adding Jlabel "one" on JFrame.
@@ -127,4 +105,5 @@ GridLayoutDemo() {
      // calling the constructor
      new GridLayoutDemo();
  }
+
 }
