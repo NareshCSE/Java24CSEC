@@ -1,0 +1,43 @@
+package javA;
+import java.awt.*;
+import java.awt.event.*;
+public class awt_factorial implements ActionListener {
+    Frame f;
+    TextField input, output;
+    Button calc;
+    public awt_factorial() {
+        f = new Frame("Factorial");
+        f.setLayout(new FlowLayout());
+        input = new TextField(10);
+        output = new TextField(10);
+        output.setEditable(false);
+        calc = new Button("Calculate");
+        f.add(new Label("Enter number:"));
+        f.add(input);
+        f.add(calc);
+        f.add(new Label("Factorial:"));
+        f.add(output);
+        calc.addActionListener(this);
+        f.setSize(200, 200);
+        f.setVisible(true);
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                f.dispose();
+            }
+        });
+    }
+    public void actionPerformed(ActionEvent e) {
+        try {
+            int n = Integer.parseInt(input.getText());
+            int fact = 1;
+            for (int i = 1; i <= n; i++)
+                fact *= i;
+            output.setText(String.valueOf(fact));
+        } catch (Exception ex) {
+            output.setText("Error");
+        }
+    }
+    public static void main(String[] args) {
+        new awt_factorial();
+    }
+}
