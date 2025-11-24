@@ -1,0 +1,25 @@
+package assignment;
+import java.util.Scanner;
+public class SumEvenOdd {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+                          // Ask how many numbers to read
+                          System.out.print("Enter the number of integers: ");
+                          int n = sc.nextInt();
+                          int evenSum = 0, oddSum = 0;
+                          // Read numbers and calculate sums
+                           System.out.println("Enter " + n + " integers:");
+                          for (int i = 1; i <= n; i++) {
+                          int num = sc.nextInt();
+                          if (num % 2 == 0)
+                               evenSum += num;
+                          else
+                                oddSum += num;
+       }
+       // Display results
+       System.out.println("\nSum of even numbers: " + evenSum);
+       System.out.println("Sum of odd numbers : " + oddSum);
+       sc.close();
+	}
+}
