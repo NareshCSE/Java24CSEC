@@ -1,0 +1,64 @@
+package sample;
+
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Assignmnet_22 extends JFrame implements ActionListener {
+
+    JTextField inputField, resultField;
+    JButton computeButton;
+
+    public Assignmnet_22() {
+        setTitle(" 25WH5A0521 Factorial Calculator");
+        setSize(350, 200);
+        setLayout(new GridLayout(3, 2, 5, 5));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        add(new JLabel("Enter an Integer:"));
+        inputField = new JTextField();
+        add(inputField);
+
+        add(new JLabel("Factorial:"));
+        resultField = new JTextField();
+        resultField.setEditable(false);
+        add(resultField);
+
+        computeButton = new JButton("Compute");
+        computeButton.addActionListener(this);
+        add(computeButton);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        try {
+            int num = Integer.parseInt(inputField.getText());
+            if (num < 0) {
+                throw new IllegalArgumentException("Factorial of negative numbers is undefined.");
+            }
+
+            long factorial = 1;
+            for (int i = 1; i <= num; i++) {
+                factorial *= i;
+            }
+            resultField.setText(String.valueOf(factorial));
+        } 
+        catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a valid integer!",
+                    "Invalid Input",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public static void main(String[] args) {
+        new Assignmnet_22().setVisible(true);
+    }
+}
