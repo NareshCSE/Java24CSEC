@@ -1,0 +1,101 @@
+package Project;
+import java.awt.*;
+import java.awt.event.*;
+class Medicine {
+    String name;
+    int id;
+    double price;
+    Medicine(String name, int id, double price) {
+        this.name = name;
+        this.id = id;
+        this.price = price;
+    }
+}
+public class PharmacySearchBinary extends Frame implements ActionListener {
+    Label lblPrompt;
+    TextField tfInput;
+    Button btnSearch;
+    TextArea taResult;
+    Medicine[] meds;
+    public PharmacySearchBinary() {
+        super("Pharmacy Medicine Search (Binary Search)");
+        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        lblPrompt = new Label("Enter Medicine Name:");
+        tfInput = new TextField(20);
+        btnSearch = new Button("Search");
+        taResult = new TextArea(6, 40);
+        taResult.setEditable(false);
+        add(lblPrompt);
+        add(tfInput);
+        add(btnSearch);
+        add(taResult);
+
+        btnSearch.addActionListener(this);
+
+        meds = new Medicine[]{
+                new Medicine("Amoxicillin", 105, 72),
+                new Medicine("Aspirin", 102, 40),
+                new Medicine("Cetrizine", 104, 15),
+                new Medicine("Dolo", 103, 30),
+                new Medicine("Paracetamol", 101, 25)
+        };
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose();
+                System.exit(0);
+            }
+        });
+
+        setSize(500, 300);
+        setVisible(true);
+    }
+
+    Medicine binarySearch(String name) {
+        int low = 0, high = meds.length - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            int compare = name.compareToIgnoreCase(meds[mid].name);
+
+            if (compare == 0)
+                return meds[mid];
+
+            if (compare < 0)
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+
+        return null;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String name = tfInput.getText().trim();
+
+        if (name.isEmpty()) {
+            taResult.setText("Please enter a medicine name.");
+            return;
+        }
+
+        Medicine result = binarySearch(name);
+
+        if (result != null) {
+            taResult.setText("Medicine Found!\n"
+                    + "Name: " + result.name + "\n"
+                    + "ID: " + result.id + "\n"
+                    + "Price: Rs. " + result.price + "\n"
+                    + "Status: AVAILABLE");
+        } else {
+            taResult.setText("Medicine NOT Found.\n"
+                    + "Medicine \"" + name + "\" is not available.");
+        }
+    }
+
+    public static void main(String[] args) {
+        System.setProperty("java.awt.headless", "false");
+        EventQueue.invokeLater(() -> new PharmacySearchBinary());
+    }
+}
