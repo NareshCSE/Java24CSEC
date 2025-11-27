@@ -1,0 +1,139 @@
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.table.DefaultTableModel;
+
+class StudentNode {
+    int roll;
+    String name;
+    double marks;
+    StudentNode next;
+
+    StudentNode(int roll, String name, double marks) {
+        this.roll = roll;
+        this.name = name;
+        this.marks = marks;
+        this.next = null;
+    }
+}
+class StudentList {
+    StudentNode head;
+
+    void addStudent(int roll, String name, double marks) {
+        StudentNode newNode = new StudentNode(roll, name, marks);
+        if (head == null) {
+            head = newNode;
+        } else {
+            StudentNode temp = head;
+            while (temp.next != null) temp = temp.next;
+            temp.next = newNode;
+        }
+    }
+    StudentNode searchStudent(int roll) {
+        StudentNode temp = head;
+        while (temp != null) {
+            if (temp.roll == roll)
+                return temp;
+            temp = temp.next;
+        }
+        return null;
+    }
+}
+public class StudentProject extends JFrame {
+
+    JTextField rollField, nameField, marksField, searchField;
+    JTable table;
+    DefaultTableModel model;
+
+    StudentList list = new StudentList();
+
+    public StudentProject() {
+
+        setTitle("Student Record Management");
+        setSize(600, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        add(new JLabel("Roll:"));
+        rollField = new JTextField(10);
+        add(rollField);
+
+        add(new JLabel("Name:"));
+        nameField = new JTextField(10);
+        add(nameField);
+
+        add(new JLabel("Marks:"));
+        marksField = new JTextField(10);
+        add(marksField);
+
+        JButton addBtn = new JButton("Add Student");
+        add(addBtn);
+
+        add(new JLabel("Search Roll:"));
+        searchField = new JTextField(10);
+        add(searchField);
+
+        JButton searchBtn = new JButton("Search");
+        add(searchBtn);
+
+        JButton showAllBtn = new JButton("Display All");
+        add(showAllBtn);
+
+        model = new DefaultTableModel();
+        model.addColumn("Roll No");
+        model.addColumn("Name");
+        model.addColumn("Marks");
+
+        table = new JTable(model);
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setPreferredSize(new Dimension(550, 250));
+        add(scroll);
+
+        addBtn.addActionListener(e -> {
+            try {
+                int roll = Integer.parseInt(rollField.getText());
+                String name = nameField.getText();
+                double marks = Double.parseDouble(marksField.getText());
+
+                if (list.searchStudent(roll) != null) {
+                    JOptionPane.showMessageDialog(this, "Roll Number Already Exists!");
+                    return;
+                }
+                list.addStudent(roll, name, marks);
+
+                rollField.setText("");
+                nameField.setText("");
+                marksField.setText("");
+                rollField.requestFocus();
+
+                JOptionPane.showMessageDialog(this, "Student Added Successfully!");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Invalid Input!");
+            }         });
+        searchBtn.addActionListener(e -> {
+            try {
+                int roll = Integer.parseInt(searchField.getText());
+                StudentNode s = list.searchStudent(roll);
+                if (s != null) {
+                    JOptionPane.showMessageDialog(this,
+                        "Student Found:\nRoll: " + s.roll +
+                        "\nName: " + s.name +
+                        "\nMarks: " + s.marks);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Student Not Found!");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Invalid Roll Number!");
+            }
+        });
+        showAllBtn.addActionListener(e -> {
+            model.setRowCount(0); 
+            StudentNode temp = list.head;
+            while (temp != null) {
+                model.addRow(new Object[]{temp.roll, temp.name, temp.marks});
+                temp = temp.next;
+            }
+        });
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new StudentProject();     }   }
